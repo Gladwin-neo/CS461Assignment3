@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 
 class Profile : AppCompatActivity() {
     private val REQ_CODE = 1234
@@ -12,7 +13,12 @@ class Profile : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
     }
 
-    fun save(view: View) {}
+    // saving user information
+    fun save(view: View) {
+        val nameEditText = findViewById<EditText>(R.id.nameEditText);
+        val ageEditText = findViewById<EditText>(R.id.ageEditText);
+        val interestsEditText = findViewById<EditText>(R.id.interestsEditText);
+    }
 
     // bringing users to the main page to see other users' profile
     fun menu(view: View) {
