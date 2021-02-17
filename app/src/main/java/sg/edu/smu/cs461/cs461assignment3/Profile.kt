@@ -35,11 +35,18 @@ class Profile : AppCompatActivity(){
     }
 
     fun setProfileImage(view: View) {
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA),111)
-        }
-        var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(i, 101)
+        val pickImageFileIntent = Intent()
+        pickImageFileIntent.type = "image/*"
+        pickImageFileIntent.action = Intent.ACTION_GET_CONTENT
+
+        val pickGalleryImageIntent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+
+        val captureCameraImageIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+        val pickTitle = "Capture from camera or Select from gallery the Profile photo"
+        val chooserIntent = Intent.createChooser(pickImageFileIntent, pickTitle)
+        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(captureCameraImageIntent, pickGalleryImageIntent))
+        startActivityForResult(chooserIntent, 101)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
