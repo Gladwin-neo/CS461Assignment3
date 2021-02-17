@@ -38,7 +38,7 @@ class Profile : AppCompatActivity(){
         pickImageFileIntent.type = "image/*"
         pickImageFileIntent.action = Intent.ACTION_GET_CONTENT
 
-        val pickGalleryImageIntent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        val pickGalleryImageIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         val captureCameraImageIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
         val pickTitle = "Capture from camera or Select from gallery the Profile photo"
@@ -49,22 +49,39 @@ class Profile : AppCompatActivity(){
                 pickGalleryImageIntent
             )
         )
-        chooserIntent.action.
-        startActivityForResult(chooserIntent, 1)
+//        chooserIntent.action.
+        startActivityForResult(chooserIntent, 1235)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, imageReturnedIntent: Intent?) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent)
         val profileImage = findViewById<ImageView>(R.id.profileImage)
-        when (requestCode) {
-            0 -> if (resultCode == RESULT_OK) {
-                var pic: Bitmap? = imageReturnedIntent?.getParcelableExtra<Bitmap>("data")
-                profileImage.setImageBitmap(pic)
-            }
-            1 -> if (resultCode == RESULT_OK) {
+        if (requestCode === 1235) {
+            var pic = imageReturnedIntent?.getParcelableExtra<Bitmap>("data")
+            if (pic === null) {
                 val selectedImage: Uri? = imageReturnedIntent?.data
                 profileImage.setImageURI(selectedImage)
+            } else {
+                profileImage.setImageBitmap(pic)
             }
+
+
+//            Log.i("img", selectedImage.toString())
+
+
+
+//        when (requestCode === 1235) {
+
+//            0 -> if (resultCode == RESULT_OK) {
+//                var pic: Bitmap? = imageReturnedIntent?.getParcelableExtra<Bitmap>("data")
+//                Log.i("img", pic.toString())
+//                profileImage.setImageBitmap(pic)
+//            }
+//            1 -> if (resultCode == RESULT_OK) {
+//                val selectedImage: Uri? = imageReturnedIntent?.data
+//                Log.i("img", selectedImage.toString())
+//                profileImage.setImageURI(selectedImage)
+//            }
         }
     }
 }
