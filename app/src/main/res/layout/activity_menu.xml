@@ -93,14 +93,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/alwyn" />
+                android:src="@drawable/alwyn"
+                android:onClick="userC"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Alwyn"
-                android:textSize="40sp"
-                android:onClick="userC"/>
+                android:textSize="40sp" />
 
         </LinearLayout>
 
@@ -117,14 +117,14 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/giles" />
+                android:src="@drawable/giles"
+                android:onClick="userD"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Giles"
-                android:textSize="40sp"
-                android:onClick="userD"/>
+                android:textSize="40sp"/>
 
         </LinearLayout>
 
