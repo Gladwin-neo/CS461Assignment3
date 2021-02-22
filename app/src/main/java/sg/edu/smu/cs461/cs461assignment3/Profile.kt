@@ -1,8 +1,10 @@
 package sg.edu.smu.cs461.cs461assignment3
 
+import android.content.ContextWrapper
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -12,10 +14,14 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.io.*
+import java.util.*
+import kotlin.time.days
 
 class Profile : AppCompatActivity(){
     private val REQ_CODE = 1234
     private val REQ_CODE_PROFILE = 1235
+    private var output: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,13 +69,18 @@ class Profile : AppCompatActivity(){
         val pickGalleryImageIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         val captureCameraImageIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
+
+//        val dir: File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
+//        output = File(dirPic,"CameraContentDemo.jpeg")
+//        captureCameraImageIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(output))
+
         val pickTitle = "Capture from camera or Select from gallery the Profile photo"
         val chooserIntent = Intent.createChooser(pickImageFileIntent, pickTitle)
         chooserIntent.putExtra(
-            Intent.EXTRA_INITIAL_INTENTS, arrayOf(
+                Intent.EXTRA_INITIAL_INTENTS, arrayOf(
                 captureCameraImageIntent,
                 pickGalleryImageIntent
-            )
+        )
         )
         startActivityForResult(chooserIntent, 1235)
     }
@@ -79,12 +90,94 @@ class Profile : AppCompatActivity(){
         val profileImage = findViewById<ImageView>(R.id.profileImage)
         if (requestCode === 1235) {
             var pic = imageReturnedIntent?.getParcelableExtra<Bitmap>("data")
+            profileImage.layoutParams.height = 600;
+            profileImage.requestLayout();
             if (pic === null) {
                 val selectedImage: Uri? = imageReturnedIntent?.data
                 profileImage.setImageURI(selectedImage)
+                val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, selectedImage)
+                val uri = saveImageToInternalStorage(bitmap)
             } else {
-                profileImage.setImageBitmap(pic)
+                profileImage.setImageBitmap(Bitmap.createScaledBitmap(pic, 500, 600, false));
+                storeImage(pic)
             }
         }
     }
+
+    // Method to save an image to internal storage
+    private fun saveImageToInternalStorage(bitmap: Bitmap):Uri{
+        val wrapper = ContextWrapper(applicationContext)
+
+        // Initializing a new file
+        // The bellow line return a directory in internal storage
+        var file = wrapper.getDir("profilePhoto", MODE_APPEND)
+
+        // Create a file to save the image
+        file = File(file, "profile.jpg")
+
+        try {
+            // Get the file output stream
+            val stream: OutputStream = FileOutputStream(file)
+
+            // Compress bitmap
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+            // Flush the stream
+            stream.flush()
+
+            // Close stream
+            stream.close()
+        } catch (e: IOException){ // Catch the exception
+            e.printStackTrace()
+        }
+
+        // Return the saved image uri
+        return Uri.parse(file.absolutePath)
+    }
+
+
+    /** Create a File for saving an image or video  */
+    private fun getOutputMediaFile(): File? {
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
+//        Log.i("dirPic", filesDir
+//                .toString() + "/Android/data/"
+//                + applicationContext.packageName
+//                + "/Files")
+        val mediaStorageDir = File(getDir("profilePhoto", MODE_APPEND)
+                .toString())
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+
+        // Create the storage directory if it does not exist
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
+                return null
+            }
+        }
+        // Create a media file name
+        val mediaFile: File
+        val mImageName = "profile.jpg"
+        mediaFile = File(mediaStorageDir.path + File.separator + mImageName)
+        return mediaFile
+    }
+
+    private fun storeImage(image: Bitmap) {
+        val pictureFile = getOutputMediaFile()
+        if (pictureFile == null) {
+            Log.d("TAG",
+                    "Error creating media file, check storage permissions: ") // e.getMessage());
+            return
+        }
+        try {
+            val fos = FileOutputStream(pictureFile)
+            image.compress(Bitmap.CompressFormat.PNG, 90, fos)
+            fos.close()
+        } catch (e: FileNotFoundException) {
+            Log.d("TAG", "File not found: ")
+        } catch (e: IOException) {
+            Log.d("TAG", "Error accessing file: ")
+        }
+    }
 }
+
