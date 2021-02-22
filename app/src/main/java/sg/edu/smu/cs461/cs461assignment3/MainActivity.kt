@@ -26,7 +26,11 @@ class MainActivity : AppCompatActivity() {
         val name = getSharedPreferences("Name", 0).getString("Name", "")
         val title = findViewById<TextView>(R.id.textView)
         val originalTitle = title.text.toString()
-        title.text = originalTitle + name
+        if (name !== "") {
+            val greetings = "\nGood to see you back $name!"
+            title.text = "$originalTitle$greetings"
+        }
+
     }
 
     // bringing users to the create profile page

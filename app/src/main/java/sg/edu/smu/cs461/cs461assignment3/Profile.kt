@@ -16,16 +16,37 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.io.*
 import java.util.*
-import kotlin.time.days
+
 
 class Profile : AppCompatActivity(){
     private val REQ_CODE = 1234
-    private val REQ_CODE_PROFILE = 1235
-    private var output: File? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+        val name = getSharedPreferences("Name", 0).getString("Name", "")
+        val age = getSharedPreferences("Age", 0).getInt("Age", 0).toString()
+        val interests = getSharedPreferences("Interests", 0).getString("Interests", "")
+        if (name!== "" && age !== "0" && interests !== "") {
+            val nameET = findViewById<EditText>(R.id.nameEditText)
+            nameET.setText(name)
+
+            val ageET = findViewById<EditText>(R.id.ageEditText)
+            ageET.setText(age)
+
+            val interestsET = findViewById<EditText>(R.id.interestsEditText)
+            interestsET.setText(interests)
+        }
+
+        val imgFile = File(getDir("profilePhoto", MODE_APPEND).toString() + "/profile.jpg")
+        if (imgFile.exists()) {
+            val myBitmap = BitmapFactory.decodeFile(imgFile.absolutePath)
+            val myImage = findViewById<ImageView>(R.id.profileImage) as ImageView
+            myImage.setImageBitmap(Bitmap.createScaledBitmap(myBitmap, 500, 600, false));
+
+        }
+
+
     }
 
     // saving user information
