@@ -1,9 +1,11 @@
 package sg.edu.smu.cs461.cs461assignment3
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.RatingBar
 
 class UserC : AppCompatActivity() {
@@ -37,5 +39,12 @@ class UserC : AppCompatActivity() {
         editor.commit()
         val ratingBar = findViewById<RatingBar>(R.id.ratingC)
         ratingBar.rating = sharedPreference.getFloat("numStarsC", 0f)
+    }
+
+    fun backToProfileC(view: View) {
+        val it = Intent()
+        it.putExtra("rating", ratingNumber.toString())
+        setResult(RESULT_OK, it)
+        finish()
     }
 }

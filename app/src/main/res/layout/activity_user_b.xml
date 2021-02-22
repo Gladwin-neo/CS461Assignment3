@@ -33,4 +33,11 @@
         android:text="Tall because I used to play basketball... That's it from me..."
         android:textSize="30sp"/>
 
+    <Button
+        android:id="@+id/backToProfileBtnB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="backToProfileB"
+        android:text="BACK TO PROFILES" />
+
 </LinearLayout>

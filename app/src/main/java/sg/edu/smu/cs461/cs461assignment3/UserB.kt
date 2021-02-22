@@ -1,12 +1,16 @@
 package sg.edu.smu.cs461.cs461assignment3
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.RatingBar
 
 class UserB : AppCompatActivity() {
     var ratingNumber = 0f
+    private val REQ_CODE = 1236
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,5 +40,12 @@ class UserB : AppCompatActivity() {
         editor.commit()
         val ratingBar = findViewById<RatingBar>(R.id.ratingB)
         ratingBar.rating = sharedPreference.getFloat("numStarsB", 0f)
+    }
+
+    fun backToProfileB(view: View) {
+        val it = Intent()
+        it.putExtra("rating", ratingNumber.toString())
+        setResult(RESULT_OK, it)
+        finish()
     }
 }

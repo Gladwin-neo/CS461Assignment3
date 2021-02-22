@@ -33,4 +33,11 @@
         android:text="9/10 of you can't pronounce my name properly... If you can, do hit me up!"
         android:textSize="30sp"/>
 
+    <Button
+        android:id="@+id/backToProfileBtnD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="backToProfileD"
+        android:text="BACK TO PROFILES" />
+
 </LinearLayout>

@@ -33,4 +33,11 @@
         android:text="What do people even write here...?"
         android:textSize="30sp"/>
 
+    <Button
+        android:id="@+id/backToProfileBtnC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="backToProfileC"
+        android:text="BACK TO PROFILES" />
+
 </LinearLayout>
