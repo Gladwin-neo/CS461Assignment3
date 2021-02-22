@@ -27,6 +27,7 @@ class Profile : AppCompatActivity(){
         val ageEditText = findViewById<EditText>(R.id.ageEditText);
         val interestsEditText = findViewById<EditText>(R.id.interestsEditText);
 
+        // checking if user attempt to not fill up anything
         if (nameEditText.text.toString() == "" || ageEditText.text.toString() == "" || interestsEditText.text.toString() == ""){
             Toast.makeText(this, "Please ensure all fields have been filled in!", Toast.LENGTH_SHORT).show()
         }
