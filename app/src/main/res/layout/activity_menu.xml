@@ -45,13 +45,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/user_icon"
+                android:src="@drawable/Shaun"
                 android:onClick="userA"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User A"
+                android:text="Shaun"
                 android:textSize="40sp"/>
 
         </LinearLayout>
@@ -69,13 +69,13 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/user_icon"
+                android:src="@drawable/Gladwin"
                 android:onClick="userB"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User B"
+                android:text="Gladwin"
                 android:textSize="40sp"/>
 
         </LinearLayout>
@@ -93,12 +93,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/user_icon" />
+                android:src="@drawable/Alwyn" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User C"
+                android:text="Alwyn"
                 android:textSize="40sp"
                 android:onClick="userC"/>
 
@@ -117,12 +117,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/user_icon" />
+                android:src="@drawable/Giles" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="User D"
+                android:text="Giles"
                 android:textSize="40sp"
                 android:onClick="userD"/>
 

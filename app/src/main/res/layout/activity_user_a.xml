@@ -12,11 +12,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User A"
+        android:text="Shaun"
         android:textSize="50dp"/>
 
     <ImageView
-        android:src="@drawable/user_icon"
+        android:src="@drawable/Shaun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -29,7 +29,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Blah Blah Blah"
+        android:text="A pretty quiet guy but if you get to know me I might show you my noisy side!"
         android:textSize="30sp"/>
 
 </LinearLayout>

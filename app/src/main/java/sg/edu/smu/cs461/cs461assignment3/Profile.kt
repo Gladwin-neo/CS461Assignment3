@@ -49,7 +49,6 @@ class Profile : AppCompatActivity(){
                 pickGalleryImageIntent
             )
         )
-//        chooserIntent.action.
         startActivityForResult(chooserIntent, 1235)
     }
 
@@ -64,24 +63,6 @@ class Profile : AppCompatActivity(){
             } else {
                 profileImage.setImageBitmap(pic)
             }
-
-
-//            Log.i("img", selectedImage.toString())
-
-
-
-//        when (requestCode === 1235) {
-
-//            0 -> if (resultCode == RESULT_OK) {
-//                var pic: Bitmap? = imageReturnedIntent?.getParcelableExtra<Bitmap>("data")
-//                Log.i("img", pic.toString())
-//                profileImage.setImageBitmap(pic)
-//            }
-//            1 -> if (resultCode == RESULT_OK) {
-//                val selectedImage: Uri? = imageReturnedIntent?.data
-//                Log.i("img", selectedImage.toString())
-//                profileImage.setImageURI(selectedImage)
-//            }
         }
     }
 }
