@@ -1,6 +1,7 @@
 package sg.edu.smu.cs461.cs461assignment3
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -26,6 +27,21 @@ class Profile : AppCompatActivity(){
         val nameEditText = findViewById<EditText>(R.id.nameEditText);
         val ageEditText = findViewById<EditText>(R.id.ageEditText);
         val interestsEditText = findViewById<EditText>(R.id.interestsEditText);
+
+        val name = getSharedPreferences("Name", 0)
+        val editor1: SharedPreferences.Editor = name.edit()
+        editor1.putString("Name", nameEditText.text.toString())
+        editor1.commit()
+
+        val age = getSharedPreferences("Age", 0)
+        val editor2: SharedPreferences.Editor = age.edit()
+        editor2.putInt("Age", ageEditText.text.toString().toInt())
+        editor2.commit()
+
+        val interests = getSharedPreferences("Interests", 0)
+        val editor3: SharedPreferences.Editor = interests.edit()
+        editor3.putString("Interests", interestsEditText.text.toString())
+        editor3.commit()
 
         // checking if user attempt to not fill up anything
         if (nameEditText.text.toString() == "" || ageEditText.text.toString() == "" || interestsEditText.text.toString() == ""){

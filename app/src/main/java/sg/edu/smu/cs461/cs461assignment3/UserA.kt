@@ -2,6 +2,7 @@ package sg.edu.smu.cs461.cs461assignment3
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.RatingBar
 import androidx.appcompat.app.AppCompatActivity
 
