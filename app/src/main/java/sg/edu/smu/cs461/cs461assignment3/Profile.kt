@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class Profile : AppCompatActivity(){
@@ -25,6 +26,10 @@ class Profile : AppCompatActivity(){
         val nameEditText = findViewById<EditText>(R.id.nameEditText);
         val ageEditText = findViewById<EditText>(R.id.ageEditText);
         val interestsEditText = findViewById<EditText>(R.id.interestsEditText);
+
+        if (nameEditText.text.toString() == "" || ageEditText.text.toString() == "" || interestsEditText.text.toString() == ""){
+            Toast.makeText(this, "Please ensure all fields have been filled in!", Toast.LENGTH_SHORT).show()
+        }
     }
 
     // bringing users to the main page to see other users' profile
