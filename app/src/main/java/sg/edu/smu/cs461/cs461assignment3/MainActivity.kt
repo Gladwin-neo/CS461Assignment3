@@ -15,9 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         // getting the name the was saved alr
         val name = getSharedPreferences("Name", 0).getString("Name", null)
-        Log.i("test",name)
         val title = findViewById<TextView>(R.id.textView)
-
         val originalTitle = title.text.toString()
         title.text = originalTitle + name
     }
