@@ -16,7 +16,7 @@
         android:textSize="50dp"/>
 
     <ImageView
-        android:src="@drawable/Alwyn"
+        android:src="@drawable/alwyn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/Shaun"
+                android:src="@drawable/shaun"
                 android:onClick="userA"/>
 
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/Gladwin"
+                android:src="@drawable/gladwin"
                 android:onClick="userB"/>
 
             <TextView
@@ -93,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/Alwyn" />
+                android:src="@drawable/alwyn" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:clickable="true"
-                android:src="@drawable/Giles" />
+                android:src="@drawable/giles" />
 
             <TextView
                 android:layout_width="wrap_content"
