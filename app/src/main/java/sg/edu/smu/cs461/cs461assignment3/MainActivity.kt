@@ -13,8 +13,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // to clear all shared preferences
+//        getSharedPreferences("Name", MODE_PRIVATE).edit().clear().apply()
+//        getSharedPreferences("Age", MODE_PRIVATE).edit().clear().apply()
+//        getSharedPreferences("Interests", MODE_PRIVATE).edit().clear().apply()
+//        getSharedPreferences("numStarsA", MODE_PRIVATE).edit().clear().apply()
+//        getSharedPreferences("numStarsB", MODE_PRIVATE).edit().clear().apply()
+//        getSharedPreferences("numStarsC", MODE_PRIVATE).edit().clear().apply()
+//        getSharedPreferences("numStarsD", MODE_PRIVATE).edit().clear().apply()
+
         // getting the name the was saved alr
-        val name = getSharedPreferences("Name", 0).getString("Name", null)
+        val name = getSharedPreferences("Name", 0).getString("Name", "")
         val title = findViewById<TextView>(R.id.textView)
         val originalTitle = title.text.toString()
         title.text = originalTitle + name
