@@ -3,6 +3,7 @@ package sg.edu.smu.cs461.cs461assignment3
 import android.content.ContextWrapper
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -14,6 +15,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import java.io.*
 import java.util.*
 
@@ -87,24 +89,21 @@ class Profile : AppCompatActivity(){
 
     fun setProfileImage(view: View) {
         val pickImageFileIntent = Intent()
+        while (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)!= PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA),111)
+        }
+
         pickImageFileIntent.type = "image/*"
         pickImageFileIntent.action = Intent.ACTION_GET_CONTENT
-
         val pickGalleryImageIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         val captureCameraImageIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-
-//        val dir: File = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM)
-//        output = File(dirPic,"CameraContentDemo.jpeg")
-//        captureCameraImageIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(output))
-
         val pickTitle = "Capture from camera or Select from gallery the Profile photo"
         val chooserIntent = Intent.createChooser(pickImageFileIntent, pickTitle)
         chooserIntent.putExtra(
                 Intent.EXTRA_INITIAL_INTENTS, arrayOf(
                 captureCameraImageIntent,
                 pickGalleryImageIntent
-        )
+                )
         )
         startActivityForResult(chooserIntent, 1235)
     }
